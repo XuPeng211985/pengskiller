@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <!--允许 JDBC 支持自动生成主键，需要驱动兼容。
+             如果设置为 true 则这个设置强制使用自动生成主键-->
+        <setting name="useGeneratedKeys" value="true"/>
+        <!--使用列标签代替列名。不同的驱动在这方面会有不同的表现-->
+        <setting name="useColumnLabel" value="true"/>
+        <!--使用驼峰命名规范 表字段名一下划线风格单词，直接映射到实体属性名时
+            去掉下划线同时将第一个单词的第一个字母小写 其他单词的第一个字母大写-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+</configuration>

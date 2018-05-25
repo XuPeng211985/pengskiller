@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace指定实现接口的路径-->
+<mapper namespace="com.seckillpeng.dao.SeckillGoodsDao">
+    <!--注意事项：id必须和接口中要实现的方法名相同
+                  <= 要用转义字符<![CDATA[<=]]>代替
+                  更新操作实质上是将库存减1 但是需要满足多个条件
+                  秒杀执行时间必须在活动开始和结束时间的中间
+                  并且如果库存<=0 也将秒杀失败
+       -->
+       <update id="reduceNumber">
+           update
+               seckill_goods
+           set
+                number = number - 1
+           where seckill_id = #{seckillId}
+           and  start_time <![CDATA[<=]]> #{killTime}
+           and  end_time >= #{killTime}
+           and  number > 0;
+       </update>
+     <!--根据id查询-->
+      <select id="queryById" resultType="SeckillGoods" parameterType="long">
+            select  sckill_id,name,number,create_time,start_time,end_time
+            from  sckill_goods
+            where sckill_id=#{seckillId};
+      </select>
+    <!--查询某个范围内的秒杀商品列表-->
+    <select id="queryAll" resultType="SeckillGoods">
+        select *
+        from seckill_goods
+        order by create_time desc
+        limit #{offset},#{limit}
+    </select>
+</mapper>
