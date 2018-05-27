@@ -1,5 +1,7 @@
 package com.seckillpeng.dao;
 import com.seckillpeng.entity.SeckillGoods;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.Date;
 import java.util.List;
 public interface SeckillGoodsDao {
@@ -9,7 +11,7 @@ public interface SeckillGoodsDao {
      * @param killTime
      * @return 返回执行减库存操作的商品所在的行数
      */
-     int reduceNumber(long seckillId,Date killTime);
+     int reduceNumber(@Param("seckillId") long seckillId,@Param("killTime")Date killTime);
 
     /**
      * 根据Id查询某商品的库存情况
@@ -24,5 +26,5 @@ public interface SeckillGoodsDao {
      * @param limit
      * @return 返回查询结果
      */
-     List<SeckillGoods> queryAll(int offset,int limit);
+     List<SeckillGoods> queryAll(@Param("offset")int offset,@Param("limit") int limit);
 }

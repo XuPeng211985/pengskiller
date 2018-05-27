@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd">
+    <!--1.引入jdbc连接参数配置文件-->
+    <context:property-placeholder location="classpath:jdbc.properties"></context:property-placeholder>
+   <!--2.配置数据库连接池-->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <!--连接池路径-->
+        <property name="driverClass" value="${driver}"></property>
+        <!--三个基本属性-->
+        <property name="jdbcUrl" value="${url}"></property>
+        <property name="user" value="${jdbc.username}"/>
+        <property name="password" value="${password}"/>
+
+        <!--c3p0私有属性-->
+        <property name="maxPoolSize" value="30"/>
+        <property name="minPoolSize" value="10"/>
+        <!--关闭连接后不自动提交-->
+        <property name="autoCommitOnClose" value="false"/>
+        <!--获取连接超时时间-->
+        <property name="checkoutTimeout" value="1000"/>
+        <!--获取连接失败重试次数-->
+        <property name="acquireRetryAttempts" value="2"/>
+    </bean>
+    <!--配置SqlSessionFactory-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--注入连接池-->
+        <property name="dataSource" ref="dataSource"></property>
+        <!--引入mybatis全局配置文件-->
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <!--启动包扫描-->
+        <property name="typeAliasesPackage" value="com.seckillpeng.entity"></property>
+        <property name="mapperLocations" value="classpath:com/seckillpeng/mapper/*.xml"/>
+    </bean>
+
+    <!--4.配置扫描Dao接口包，动态实现DAO接口 并且注入Spring-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+       <!--扫描Dao接口包-->
+        <property name="basePackage" value="com.seckillpeng.dao"/>
+    </bean>
+</beans>

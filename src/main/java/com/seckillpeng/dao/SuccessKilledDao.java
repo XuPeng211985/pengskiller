@@ -1,6 +1,7 @@
 package com.seckillpeng.dao;
 
 import com.seckillpeng.entity.SuccessKilled;
+import org.apache.ibatis.annotations.Param;
 
 public interface SuccessKilledDao {
     /**
@@ -9,12 +10,12 @@ public interface SuccessKilledDao {
      * @param userPhone
      * @return
      */
-   int insertSuccessKilled(long seckillId,long userPhone);
+   int insertSuccessKilled(@Param("seckillId")long seckillId,@Param("userPhone")long userPhone);
     /**
      * 查询一条购买明细记录，包含秒杀商品实体
      * @param seckillId
      * @param userPhone
      * @return
      */
-    SuccessKilled  queryByIdWithSeckillGoods(long seckillId,long userPhone);
+    SuccessKilled  queryByIdWithSeckillGoods(@Param("seckillId")long seckillId,@Param("userPhone") long userPhone);
 }

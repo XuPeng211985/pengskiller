@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--指定接口所在的位置-->
+<mapper namespace="com.seckillpeng.dao.SeckillGoodsDao">
+    <!--秒杀商品，库存减一 秒杀时间必须在活动开始到结束范围内-->
+       <update id="reduceNumber">
+           update
+               seckill_goods
+           set
+                number = number - 1
+           where seckill_id = #{seckillId}
+           and  start_time <![CDATA[<=]]> #{killTime}
+           and  end_time >= #{killTime}
+           and  number > 0
+       </update>
+      <select id="queryById" resultType="SeckillGoods" parameterType="long">
+            select  seckill_id,name,number,create_time,start_time,end_time
+            from  seckill_goods
+            where seckill_id=#{seckillId}
+      </select>
+    <select id="queryAll" resultType="SeckillGoods">
+        select *
+        from seckill_goods
+        order by create_time desc
+        limit #{offset},#{limit}
+    </select>
+</mapper>

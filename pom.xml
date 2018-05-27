@@ -124,4 +124,20 @@
             <version>4.1.7.RELEASE</version>
         </dependency>
     </dependencies>
+    <build>
+        <finalName>seckillpeng</finalName>
+        <resources>
+            <!--打包时包含源代码包下的资源文件，默认情况下只会打包src/main/java下的源代码 -->
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+    </build>
 </project>
