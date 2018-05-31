@@ -1,5 +1,7 @@
 package com.seckillpeng.dto;
 import com.seckillpeng.entity.SuccessKilled;
+import com.seckillpeng.enums.SeckillStatuEnums;
+
 /**
  * 封装执行秒杀后的结果
  */
@@ -24,27 +26,25 @@ public class SeckillExecution {
     /**
      * 秒杀成功 返回所有属性
      * @param seckillId
-     * @param state
-     * @param stateInfo
+     * @param seckillStatuEnums
      * @param successKilled
      */
-    public SeckillExecution(long seckillId, int state, String stateInfo, SuccessKilled successKilled) {
+    public SeckillExecution(long seckillId,SeckillStatuEnums seckillStatuEnums, SuccessKilled successKilled) {
         this.seckillId = seckillId;
-        this.state = state;
-        this.stateInfo = stateInfo;
+        this.state = seckillStatuEnums.getStatus();
+        this.stateInfo = seckillStatuEnums.getStatuInfo();
         this.successKilled = successKilled;
     }
 
     /**
      * 秒杀失败返回 失败状态及明文标识
      * @param seckillId
-     * @param state
-     * @param stateInfo
+     * @param seckillStatuEnums
      */
-    public SeckillExecution(long seckillId, int state, String stateInfo) {
+    public SeckillExecution(long seckillId, SeckillStatuEnums seckillStatuEnums) {
         this.seckillId = seckillId;
-        this.state = state;
-        this.stateInfo = stateInfo;
+        this.state = seckillStatuEnums.getStatus();
+        this.stateInfo = seckillStatuEnums.getStatuInfo();
     }
 
     public long getSeckillId() {

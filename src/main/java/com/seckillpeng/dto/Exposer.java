@@ -30,12 +30,8 @@ public class Exposer {
      */
   private long seckilId;
 
-    public Exposer(boolean exposed, String md5, long startTime, long now, long endTime, long seckilId) {
+    public Exposer(boolean exposed, long seckilId) {
         this.exposed = exposed;
-        this.md5 = md5;
-        this.startTime = startTime;
-        this.now = now;
-        this.endTime = endTime;
         this.seckilId = seckilId;
     }
 
@@ -45,8 +41,11 @@ public class Exposer {
         this.seckilId = seckilId;
     }
 
-    public Exposer(boolean exposed, long seckilId) {
+    public Exposer(boolean exposed, long startTime, long now, long endTime, long seckilId) {
         this.exposed = exposed;
+        this.startTime = startTime;
+        this.now = now;
+        this.endTime = endTime;
         this.seckilId = seckilId;
     }
 }
