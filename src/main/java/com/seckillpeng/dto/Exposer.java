@@ -4,6 +4,66 @@ package com.seckillpeng.dto;
  * 暴露秒杀接口DTO
  */
 public class Exposer {
+    public boolean isExposed() {
+        return exposed;
+    }
+
+    public void setExposed(boolean exposed) {
+        this.exposed = exposed;
+    }
+
+    public String getMd5() {
+        return md5;
+    }
+
+    public void setMd5(String md5) {
+        this.md5 = md5;
+    }
+
+    @Override
+    public String toString() {
+        return "Exposer{" +
+                "exposed=" + exposed +
+                ", md5='" + md5 + '\'' +
+                ", startTime=" + startTime +
+                ", now=" + now +
+                ", endTime=" + endTime +
+                ", seckilId=" + seckilId +
+                '}';
+    }
+
+    public long getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(long startTime) {
+        this.startTime = startTime;
+    }
+
+    public long getNow() {
+        return now;
+    }
+
+    public void setNow(long now) {
+        this.now = now;
+    }
+
+    public long getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(long endTime) {
+        this.endTime = endTime;
+    }
+
+    public long getSeckilId() {
+        return seckilId;
+    }
+
+    public void setSeckilId(long seckilId) {
+        this.seckilId = seckilId;
+    }
+
     /**
      * 是否满足秒杀的条件
      */

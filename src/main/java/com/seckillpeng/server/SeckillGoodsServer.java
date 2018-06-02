@@ -1,17 +1,14 @@
 package com.seckillpeng.server;
-
 import com.seckillpeng.dto.Exposer;
 import com.seckillpeng.dto.SeckillExecution;
 import com.seckillpeng.entity.SeckillGoods;
 import com.seckillpeng.exception.RepeatKillException;
 import com.seckillpeng.exception.SeckillCloseException;
 import com.seckillpeng.exception.SeckillException;
-
 import java.util.List;
-
 /**
  * 应该站在用户的角度去设计接口，包括简介易于理解的接口名称
- *            简练的参数结构，用最少的参数组成完成业务需求
+ *     简练的参数结构，用最少的参数组成完成业务需求
  *    返回类型通常写成包装类，该类包含前端和后台的综合属性
  */
 public interface SeckillGoodsServer {
@@ -27,7 +24,6 @@ public interface SeckillGoodsServer {
      * @return
      */
     SeckillGoods findSeckillGoodsById(long seckillId);
-
     /**
      * 请求执行秒杀，如果当前商品处于可以秒杀的状态 那么返回秒杀接口的地址
      * 否则输出系统时间和当前商品执行秒杀的时间范围

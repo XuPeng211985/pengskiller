@@ -18,6 +18,17 @@ public class SeckillExecution {
      * 秒杀状态明文标识
      */
    private String stateInfo;
+
+    @Override
+    public String toString() {
+        return "SeckillExecution{" +
+                "seckillId=" + seckillId +
+                ", state=" + state +
+                ", stateInfo='" + stateInfo + '\'' +
+                ", successKilled=" + successKilled +
+                '}';
+    }
+
     /**
      * 秒杀成功，返回秒杀明细记录
      */

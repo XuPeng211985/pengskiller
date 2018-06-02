@@ -2,7 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--指定接口所在的位置-->
 <mapper namespace="com.seckillpeng.dao.SeckillGoodsDao">
+    <!--秒杀商品，库存减一 秒杀时间必须在活动开始到结束范围内-->
        <update id="reduceNumber">
            update
                seckill_goods
