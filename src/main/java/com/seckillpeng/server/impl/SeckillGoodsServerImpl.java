@@ -83,13 +83,11 @@ public class SeckillGoodsServerImpl implements SeckillGoodsServer {
         //获取秒杀接口，将码字传递给用户
         return new Exposer(true, md5, seckillId);
     }
-
     private String getMd5(long seckillId) {
         String base = seckillId + "/" + "gndsjgnjv#$%^&dkrgh*&";
         String md5 = DigestUtils.md5DigestAsHex(base.getBytes());
         return md5;
     }
-
     @Override
     @Transactional
     public SeckillExecution executeSeckillProcedure(long seckillId, long userPhone, String md5) {
