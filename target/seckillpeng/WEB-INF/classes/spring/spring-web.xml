@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+   <!-- 1.开启SpringMVC注解模式开发
+     1.自动引入handler映射器和适配器 DefaultAnnotationHandlerMapping,AnnotationMethodHandlerAdapter
+     2.默认提供一系列的功能:数据绑定，数字和日期的format@NumberFormat,@DateTimeFormat
+     3.支持xml，json的读写-->
+    <mvc:annotation-driven/>
+    <!--2.静态资源servlet默认配置
+    SpringMVC自动处理js css png 等资源
+    2）允许使用“/”做整体映射
+    -->
+    <mvc:default-servlet-handler/>
+    <!--3.配置JSP 显示ViewResolver-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+    <!--包扫描所有的controller-->
+   <context:component-scan base-package="com.seckillpeng.web"/>
+</beans>
