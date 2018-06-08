@@ -36,7 +36,7 @@ public class SeckillGoodsServerImpl implements SeckillGoodsServer {
      */
     @Override
     public List<SeckillGoods> findAllSeckillGoods() {
-        return seckillGoodsDao.queryAll(0, 5);
+        return seckillGoodsDao.queryAll(0, 4);
     }
 
     /**

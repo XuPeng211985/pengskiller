@@ -25,7 +25,7 @@ public class SeckillController
     {
         //list.jsp+mode=ModelAndView
         //获取列表页
-        List<SeckillGoods> list=seckillService.findAllSeckillGoods();
+        List<SeckillGoods>  list = seckillService.findAllSeckillGoods();
         model.addAttribute("list",list);
         return "list";
     }
@@ -38,10 +38,10 @@ public class SeckillController
             return "redirect:/seckill/list";
         }
 
-        SeckillGoods seckill=seckillService.findSeckillGoodsById(seckillId);
+        SeckillGoods seckill = seckillService.findSeckillGoodsById(seckillId);
         if (seckill==null)
         {
-            return "forward:/seckill/list";
+            return "redirect:/seckill/list";
         }
 
         model.addAttribute("seckill",seckill);
@@ -100,7 +100,6 @@ public class SeckillController
             return new SeckillResult<SeckillExecution>(true,execution);
         }
     }
-
     //获取系统时间
     @RequestMapping(value = "/time/now",method = RequestMethod.GET)
     @ResponseBody
