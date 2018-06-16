@@ -28,7 +28,7 @@ var seckill = {
             //手机验证和登录,计时交互
             //规划我们的交互流程
             //在cookie中查找手机号
-            var userPhone = $.cookie('userPhone');
+            var userPhone = $.cookie('killPhone');
             //验证手机号
             if (!seckill.validatePhone(userPhone)) {
                 //绑定手机 控制输出
@@ -44,7 +44,7 @@ var seckill = {
                  console.log("inputPhone: " + inputPhone);
                     if (seckill.validatePhone(inputPhone)) {
                         //电话写入cookie(7天过期)
-                        $.cookie('userPhone', inputPhone, {expires: 7, path: '/seckillpeng'});
+                        $.cookie('killPhone', inputPhone, {expires: 7, path: '/sekillpeng'});
                         //验证通过刷新页面
                         window.location.reload();
                     } else {
@@ -97,7 +97,6 @@ var seckill = {
                         $.post(killUrl, {}, function (result) {
                             if (result && result['success']) {
                                 var killResult = result['data'];
-                                console.log("killResult: " + killResult);//TODO
                                 var state = killResult['state'];
                                 var stateInfo = killResult['stateInfo'];
                                 //显示秒杀结果
