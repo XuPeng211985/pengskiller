@@ -37,7 +37,11 @@
         <property name="typeAliasesPackage" value="com.seckillpeng.entity"></property>
         <property name="mapperLocations" value="classpath:com/seckillpeng/mapper/*.xml"/>
     </bean>
-
+    <!--引入RedisDao 采用构造方法注入 指定特定的ip 和 端口号-->
+     <bean name="redisDao" class="com.seckillpeng.dao.cache.RedisDao">
+         <constructor-arg index="0" value="localhost"/>
+         <constructor-arg index="1" value="6379"/>
+     </bean>
     <!--4.配置扫描Dao接口包，动态实现DAO接口 并且注入Spring-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>

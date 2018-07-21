@@ -18,14 +18,15 @@
         <property name="password" value="${password}"/>
 
         <!--c3p0私有属性-->
-        <property name="maxPoolSize" value="30"/>
+        <property name="maxPoolSize" value="50"/>
         <property name="minPoolSize" value="10"/>
         <!--关闭连接后不自动提交-->
         <property name="autoCommitOnClose" value="false"/>
         <!--获取连接超时时间-->
-        <property name="checkoutTimeout" value="1000"/>
+        <property name="checkoutTimeout" value="2000"/>
         <!--获取连接失败重试次数-->
-        <property name="acquireRetryAttempts" value="2"/>
+        <property name="acquireRetryAttempts" value="3"/>
+        <property name="unreturnedConnectionTimeout" value="25"/>
     </bean>
     <!--配置SqlSessionFactory-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -37,11 +38,15 @@
         <property name="typeAliasesPackage" value="com.seckillpeng.entity"></property>
         <property name="mapperLocations" value="classpath:com/seckillpeng/mapper/*.xml"/>
     </bean>
-
     <!--4.配置扫描Dao接口包，动态实现DAO接口 并且注入Spring-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
        <!--扫描Dao接口包-->
         <property name="basePackage" value="com.seckillpeng.dao"/>
+    </bean>
+    <!--引入RedisDao 采用构造方法注入 指定特定的ip 和 端口号-->
+    <bean name="redisDao" class="com.seckillpeng.dao.cache.RedisDao">
+        <constructor-arg index="0" value="192.168.229.132"/>
+        <constructor-arg index="1" value="6379"/>
     </bean>
 </beans>
