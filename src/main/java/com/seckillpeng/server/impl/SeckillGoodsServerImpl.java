@@ -142,5 +142,4 @@ public class SeckillGoodsServerImpl implements SeckillGoodsServer {
             }
         }
     }
-
 }
